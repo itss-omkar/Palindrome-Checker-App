@@ -1,28 +1,35 @@
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        String input = "madam";
+        Scanner sc = new Scanner(System.in);
 
-        boolean result = check(input, 0, input.length() - 1);
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
 
-        if (result) {
-            System.out.println(input + " is a palindrome.");
+        // Normalize the string
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        boolean isPalindrome = true;
+
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            // Compare symmetric characters
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if (isPalindrome) {
+            System.out.println("The given string is a Palindrome.");
         } else {
-            System.out.println(input + " is not a palindrome.");
-        }
-    }private static boolean check(String s, int start, int end) {
-
-        // Base condition
-        if (start >= end) {
-            return true;
+            System.out.println("The given string is NOT a Palindrome.");
         }
 
-        // If characters don't match
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return check(s, start + 1, end - 1);
+        sc.close();
     }
 }
