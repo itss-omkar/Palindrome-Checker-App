@@ -1,22 +1,26 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        // Original string
-        String original = "racecar";
+        // Define the input string
+        String input = "level";
 
-        // Create Deque
-        java.util.Deque<Character> deque = new java.util.LinkedList<>();
+        // Create a LinkedList to store characters
+        java.util.LinkedList<Character> list = new java.util.LinkedList<>();
 
-        // Insert characters into deque
-        for (int i = 0; i < original.length(); i++) {
-            deque.addLast(original.charAt(i));
+        // Add each character to the linked list
+        for (char c : input.toCharArray()) {
+            list.add(c);
         }
 
-        // Compare front and rear elements
+        // Flag to track palindrome state
         boolean isPalindrome = true;
 
-        while (deque.size() > 1) {
-            if (deque.removeFirst() != deque.removeLast()) {
+        // Compare until only one or zero elements remain
+        while (list.size() > 1) {
+            char first = list.removeFirst();
+            char last = list.removeLast();
+
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
@@ -24,9 +28,9 @@ public class PalindromeCheckerApp {
 
         // Print result
         if (isPalindrome) {
-            System.out.println("The string \"" + original + "\" is a Palindrome.");
+            System.out.println(input + " is a palindrome.");
         } else {
-            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+            System.out.println(input + " is not a palindrome.");
         }
     }
 }
